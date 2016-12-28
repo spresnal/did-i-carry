@@ -10,66 +10,12 @@ class LeagueCtrl {
 
         ctrl.region = 'na';
         ctrl.regions = ['br', 'eune', 'euw', 'jp', 'kr', 'lan', 'las', 'na', 'oce', 'ru', 'tr'];
+
+        //temporary
+        ctrl.summonerName = 'Firebun';
         
-        ctrl.getSummonersByNames = function() {
-            Meteor.call('getSummonersByNames', {summonerNames:ctrl.summonerNames}, function(error, results) {
-                ctrl.results = JSON.parse(results.content);
-                $scope.$apply();
-            });
-        };
-
-        ctrl.getSummonersByIds = function() {
-            Meteor.call('getSummonersByIds', {summonerIds:ctrl.summonerIds}, function(error, results) {
-                ctrl.results = JSON.parse(results.content);
-                $scope.$apply();
-            });
-        };
-
-        ctrl.getSummonersNamesByIds = function() {
-            Meteor.call('getSummonersNamesByIds', {summonerIds:ctrl.summonerIds}, function(error, results) {
-                ctrl.results = JSON.parse(results.content);
-                $scope.$apply();
-            });
-        };
-
-        ctrl.getSummonersMasteriesByIds = function() {
-            Meteor.call('getSummonersMasteriesByIds', {summonerIds:ctrl.summonerIds}, function(error, results) {
-                ctrl.results = JSON.parse(results.content);
-                $scope.$apply();
-            });
-        };
-
-        ctrl.getSummonersRunesByIds = function() {
-            Meteor.call('getSummonersRunesByIds', {summonerIds:ctrl.summonerIds}, function(error, results) {
-                ctrl.results = JSON.parse(results.content);
-                $scope.$apply();
-            });
-        };
-
-        ctrl.getAllChampions = function() {
-            Meteor.call('getAllChampions', function(error, results) {
-                console.log(results);
-                ctrl.results = JSON.parse(results.content);
-                $scope.$apply();
-            });
-        };
-
-        ctrl.getChampionById = function() {
-            Meteor.call('getChampionById', {championId:1}, function(error, results) {
-                ctrl.results = JSON.parse(results.content);
-                $scope.$apply();
-            });
-        };
-
-        ctrl.getLeaguesBySummonerIds = function() {
-            Meteor.call('getLeaguesBySummonerIds', {summonerIds:ctrl.summonerIds}, function(error, results) {
-                ctrl.results = JSON.parse(results.content);
-                $scope.$apply();
-            });
-        };
-
-        ctrl.getLeagueEntriesBySummonerIds = function() {
-            Meteor.call('getLeagueEntriesBySummonerIds', {summonerIds:ctrl.summonerIds}, function(error, results) {
+        ctrl.didICarryLastGame = function() {
+            Meteor.call('didICarryLastGame', {summonerName:ctrl.summonerName}, function(error, results) {
                 ctrl.results = JSON.parse(results.content);
                 $scope.$apply();
             });

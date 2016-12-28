@@ -32,35 +32,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="summonerNames" class="col-sm-2 control-label">Summoner Names</label>
+                    <label for="summonerName" class="col-sm-2 control-label">Summoner Name</label>
                     <div class="col-md-5">
-                        <input type="text" id="summonerName" class="form-control" placeholder="Phroggen, Gordita God" ng-model="$ctrl.summonerNames">
+                        <input type="text" id="summonerName" class="form-control" placeholder="Firebun" ng-model="$ctrl.summonerName">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="summonerIds" class="col-sm-2 control-label">Summoner Ids</label>
-                    <div class="col-md-5">
-                        <input type="text" id="summonerIds" class="form-control" placeholder="23521773, 23468627, 60239169" ng-model="$ctrl.summonerIds">
-                    </div>
-                </div>
-
                 <hr>
-
-                <h4>Select an API call</h4>
+                
                 <div class="row top-buffer">
-                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.getSummonersByNames()">getSummonersByNames</button></div>
-                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.getSummonersByIds()">getSummonersByIds</button></div>
-                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.getSummonersNamesByIds()">getSummonersNamesByIds</button></div>
-                </div>
-                <div class="row top-buffer">
-                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.getSummonersMasteriesByIds()">getSummonersMasteriesByIds</button></div>
-                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.getSummonersRunesByIds()">getSummonersRunesByIds</button></div>
-                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.getAllChampions()">getAllChampions</button></div>
-                </div>
-                <div class="row top-buffer">
-                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.getChampionById()">getChampionById</button></div>
-                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.getLeaguesBySummonerIds()">getLeaguesBySummonerIds</button></div>
-                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.getLeagueEntriesBySummonerIds()">getLeagueEntriesBySummonerIds</button></div>
+                    <div class="col-md-4"><button class="btn btn-block btn-primary" ng-click="$ctrl.didICarryLastGame()">Did I Carry?</button></div>
                 </div>
 
                 <hr>

@@ -8,6 +8,6 @@ Meteor.methods({
     // Return Value: MatchList
     getMatchListBySummonerId: function (v) {
         this.unblock();
-        return requestHelper.call('GET', requestHelper.buildUrl(apiVersion, `/matchlist/by-summoner/${v.summonerId}`));
+        return requestHelper.call('GET', requestHelper.buildUrl(apiVersion, `/matchlist/by-summoner/${v.summonerId}`, v.optionalParams));
     }
 });
