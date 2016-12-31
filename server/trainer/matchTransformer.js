@@ -2,67 +2,50 @@ matchTransformer = (function() {
     'use strict';   
     var expose = {};
 
-    var team100,
-        team200;
+    var gameTotals;
 
     expose.transform = function(matchData){
         var matchResults = [];
-        team100 = getEmptyTeamTotals();
-        team200 = getEmptyTeamTotals();
-
+        gameTotals = getEmptyGameTotals();
 
         matchData.participants.forEach( function (participant){
-            appendStatsToTeam(participant);
+            appendStats(participant.stats);
         });
 
         matchData.participants.forEach( function (participant){
-            var team = getParticipantTeam(participant);
             matchResults.push({
-                input: getParticipantInput(participant, team),
-                output: [team.winner]
+                input: normalizeInput(participant.stats),
+                output: [participant.stats.winner ? 1 : 0]
             });
         });
 
-        console.log(matchResults);
         return matchResults;
     };
 
-    var getParticipantInput = function(participant, team){
-        var stats = participant.stats;
+    var normalizeInput = function(stats){
         return [
-            stats.kills/team.kills,
-            stats.deaths/team.deaths,
-            stats.assists/team.assists,
-            stats.totalDamageDealt/team.totalDamageDealt,
-            stats.totalDamageDealtToChampions/team.totalDamageDealtToChampions,
-            stats.totalDamageTaken/team.totalDamageTaken,
-            stats.goldSpent/team.goldSpent
+            stats.kills/gameTotals.kills,
+            stats.deaths/gameTotals.deaths,
+            stats.assists/gameTotals.assists,
+            stats.totalDamageDealt/gameTotals.totalDamageDealt,
+            stats.totalDamageDealtToChampions/gameTotals.totalDamageDealtToChampions,
+            stats.totalDamageTaken/gameTotals.totalDamageTaken,
+            stats.goldSpent/gameTotals.goldSpent
         ];
     }
 
-    var getParticipantTeam = function(participant){
-        return participant.teamId === 100 ? team100 : team200;
-    }
-
-    var appendStatsToTeam = function(participant){
-        var team = getParticipantTeam(participant);
-        appendStats(team, participant.stats);
-    };
-
-    var appendStats = function(team, stats){
-        team.winner = stats.winner ? 1 : 0;
-        team.kills += stats.kills;
-        team.deaths += stats.deaths;
-        team.assists += stats.assists;
-        team.totalDamageDealt += stats.totalDamageDealt;
-        team.totalDamageDealtToChampions += stats.totalDamageDealtToChampions;
-        team.totalDamageTaken += stats.totalDamageTaken;
-        team.goldSpent += stats.goldSpent;
+    var appendStats = function(stats){
+        gameTotals.kills += stats.kills;
+        gameTotals.deaths += stats.deaths;
+        gameTotals.assists += stats.assists;
+        gameTotals.totalDamageDealt += stats.totalDamageDealt;
+        gameTotals.totalDamageDealtToChampions += stats.totalDamageDealtToChampions;
+        gameTotals.totalDamageTaken += stats.totalDamageTaken;
+        gameTotals.goldSpent += stats.goldSpent;
     };
     
-    var getEmptyTeamTotals = function(){
+    var getEmptyGameTotals = function(){
         return {
-            winner: 0,
             kills: 0,
             deaths: 0,
             assists: 0,
